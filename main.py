@@ -1,11 +1,11 @@
 import pandas as pd
-import time
 
 # CONFIGURE LINES 5-8 BEFORE RUNNING #
 excel_path = "/Users/mattbenedict/Desktop/script testing/WIP_Prostream_error_codes.xlsx"
 save_path = "/Users/mattbenedict/Desktop/script testing/"
 proj_name = "Prostream"
 rows_per_file = 1000
+# remove 'Annotation' in ln 19 + 25 if you are preparing a file for deleting labels #
 
 start_time = time.time()
 df = pd.read_excel(excel_path)
@@ -23,9 +23,3 @@ if stop < len(df):
     # noinspection PyUnboundLocalVariable
     sub_df.to_csv(f"{save_path}{proj_name}_code_upload{i+1}.csv",
                   header=['Label name', 'Annotation', 'Object type'], index=False)
-
-# Runtime Tracking #
-execution_time = round((time.time() - start_time))
-execution_time_m = round(execution_time / 60)
-execution_time_s = execution_time % 60
-print(f"Execution time: {execution_time_m} minutes {execution_time_s} seconds.")
